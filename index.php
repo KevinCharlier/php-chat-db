@@ -66,44 +66,44 @@
         }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Chat Room</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/style.css" />
+        <title>Chat Room</title>
+    </head>
 
-<body>
-<form method="post" action="index.php">
-    <div class='header'>
-    <h1>CHAT ROOM</h1>
-    </div>
-    <?php if(empty($_SESSION['username'])): ?>
-    <div class='main'>
-		<div class='userscreen'>
-                <input type='text' class='input-user' placeholder="ENTRER VOTRE NOM D'UTILISATEUR" name='username' autofocus <?php $value=$username; echo
-					"value='$username'" ?> />
-				<input type='password' class='input-user' placeholder="ENTRER VOTRE MOT DE PASSE ICI" name='password' maxlength="20" <?php $value=$password;
-					echo "value='$password'" ?> />
-				<input type='submit' class='btn btn-user' value='LOG IN' name='login' />
-    <?php else : ?>
-    <input type='submit' class='btn btn-user' value='LOG OUT' name='logout' />
-    <?php endif; ?>
-    </form>
-                            <?php if(empty($_SESSION['username'])): ?>
-                            <input href="register.php" type='submit' class='btn btn-user' value='REGISTER' name='register' />
+    <body>
+        <form method="post" action="index.php">
+            <div class='header'>
+                <h1>CHAT ROOM</h1>
+            </div>
+            <?php if(empty($_SESSION['username'])): ?>
+            <div class='main'>
+                <div class='userscreen'>
+                    <input type='text' class='input-user' placeholder="ENTRER VOTRE NOM D'UTILISATEUR" name='username' autofocus <?php $value=$username;
+                        echo "value='$username'" ?> />
+                    <input type='password' class='input-user' placeholder="ENTRER VOTRE MOT DE PASSE ICI" name='password' maxlength="20" <?php
+                        $value=$password; echo "value='$password'" ?> />
+                    <input type='submit' class='btn btn-user' value='LOG IN' name='login' />
+                    <?php else : ?>
+                    <input type='submit' class='btn btn-user' value='LOG OUT' name='logout' />
                     <?php endif; ?>
-                    </div>
-    </div>
+        </form>
+        <?php if(empty($_SESSION['username'])): ?>
+        <a class='logout' href="register.php">REGISTER</a>
+        <?php endif; ?>
+        </div>
+        </div>
 
-    <div class='main'>
-        <div id='result'>
-        <?php if(!empty($_SESSION['username'])): ?>
+        <div class='main'>
+            <div id='result'>
+                <?php if(!empty($_SESSION['username'])): ?>
                 <?php
                     $msg = $db->query("SELECT messages.text, users.username FROM messages INNER JOIN users ON messages.users_id = users.id ORDER BY messages.users_id ASC");
                     $data = $msg->fetchAll();
@@ -112,15 +112,15 @@
                         echo "<p>".$data[$i]['text']."</p></br>";
                     }
                 ?>
-        </div>
-        <div class='chatcontrols'>
-            <form method="post">
-                <input type='text' name='chat' id='chatbox' autocomplete="off" placeholder="CHATTEZ"/>
-                <input type='submit' name='submit' id='send' class='btn btn-send' value='Envoyez'/>
-            </form>
-        </div>
-        <?php else : ?>
-        <?php
+            </div>
+            <div class='chatcontrols'>
+                <form method="post">
+                    <input type='text' name='chat' id='chatbox' autocomplete="off" placeholder="CHATTEZ" />
+                    <input type='submit' name='submit' id='send' class='btn btn-send' value='Envoyez' />
+                </form>
+            </div>
+            <?php else : ?>
+            <?php
                     $msg = $db->query("SELECT messages.text, users.username FROM messages INNER JOIN users ON messages.users_id = users.id ORDER BY messages.users_id ASC");
                     $data = $msg->fetchAll();
                     for($i = 0; $i < count($data); $i++){
@@ -128,7 +128,8 @@
                         echo "<p>".$data[$i]['text']."</p></br>";
                     }
                 ?>
-                                <?php endif; ?>
-    </div>
+                <?php endif; ?>
+        </div>
     </body>
-</html>
+
+    </html>

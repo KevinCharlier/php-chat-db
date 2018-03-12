@@ -33,7 +33,7 @@
     
         if ($nombreErreur==0) {
             $chat = filter_var($_POST['chat'], FILTER_SANITIZE_STRING);
-            $dbadd = "INSERT INTO messages (title) VALUES ($chat)";
+            $dbadd = "INSERT INTO messages (text) VALUES ($chat)";
             $result = $db->exec($dbadd); // requête envoyée à la db \\
             header('Location:chat.php');
         }
@@ -50,27 +50,27 @@
     
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Chat Room</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/style.css" />
+        <title>Chat Room</title>
+    </head>
 
-<body>
-    <div class='header'>
-        <h1>CHAT ROOM</h1>
-        <input type='submit' class='btn btn-user' value='LOG OUT' name='logout' />
-    </div>
+    <body>
+        <div class='header'>
+            <h1>CHAT ROOM</h1>
+            <input type='submit' class='btn btn-user' value='LOG OUT' name='logout' />
+        </div>
 
-    <div class='main'>
-        <div id='result'>
-        <?php
+        <div class='main'>
+            <div id='result'>
+                <?php
                     $msg = $db->query("SELECT messages.text, users.username FROM messages INNER JOIN users ON messages.users_id = users.id ORDER BY messages.users_id ASC");
                     $data = $msg->fetchAll();
                     for($i = 0; $i < count($data); $i++){
@@ -78,14 +78,14 @@
                         echo "<p>".$data[$i]['text']."</p></br>";
                     }
                 ?>
+            </div>
+            <div class='chatcontrols'>
+                <form method="post">
+                    <input type='text' name='chat' id='chatbox' autocomplete="off" placeholder="CHATTEZ" />
+                    <input type='submit' name='submit' id='send' class='btn btn-send' value='Envoyez' />
+                </form>
+            </div>
         </div>
-        <div class='chatcontrols'>
-            <form method="post">
-                <input type='text' name='chat' id='chatbox' autocomplete="off" placeholder="CHATTEZ"/>
-                <input type='submit' name='submit' id='send' class='btn btn-send' value='Envoyez'/>
-            </form>
-        </div>
-    </div>
-</body>
+    </body>
 
-</html>
+    </html>

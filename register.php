@@ -64,37 +64,37 @@
             }                    
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/style.css" />
-	<title>Chat Room</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/style.css" />
+        <title>Chat Room</title>
+    </head>
 
-<body>
-	<div class='header'>
-		<h1>
-			CHAT ROOM
-		</h1>
-	</div>
+    <body>
+        <div class='header'>
+            <h1>
+                CHAT ROOM
+            </h1>
+        </div>
 
-	<div class='main'>
-		<div class='userscreen'>
-			<form method="post">
-				<input type='text' class='input-user' placeholder="ENTRER VOTRE USERNAME ICI" name="username" autofocus <?php $value=$username; echo
-					"value='$username'" ?> />
-					<input type='email' class='input-user' placeholder="ENTRER VOTRE ADRESSE EMAIL ICI" name="email" autofocus <?php $value=$email; echo
-					"value='$email'" ?> />
-				<input type='password' class='input-user' placeholder="ENTRER VOTRE MOT DE PASSE ICI" name='password' maxlength="20" />
-				<input type='submit' class='btn btn-user' value='CHAT' name='submit' />
-			</form>
-		</div>
-	</div>
-</body>
+        <div class='main'>
+            <div class='userscreen'>
+                <form method="post">
+                    <input type='text' class='input-user' placeholder="ENTRER VOTRE USERNAME ICI" name="username" autofocus <?php $value=$username;
+                        echo "value='$username'" ?> />
+                    <input type='email' class='input-user' placeholder="ENTRER VOTRE ADRESSE EMAIL ICI" name="email" autofocus <?php $value=$email;
+                        echo "value='$email'" ?> />
+                    <input type='password' class='input-user' placeholder="ENTRER VOTRE MOT DE PASSE ICI" name='password' maxlength="20" />
+                    <input type='submit' class='btn btn-user' value='REGISTER' name='submit' />
+                </form>
+            </div>
+        </div>
+    </body>
 
-</html>
+    </html>
